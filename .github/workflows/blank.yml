@@ -33,6 +33,6 @@ jobs:
  
       - name: Uninstall
         run: |
-           Uninstall-Module Microsoft.Graph
+           Uninstall-Module -Name Microsoft.Graph
         shell: pwsh
         
