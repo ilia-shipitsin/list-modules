@@ -3,15 +3,7 @@
 name: CI
 
 # Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+on: [ push, pull_request, workflow_dispatch ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,5 +23,16 @@ jobs:
            [System.UInt32] $r = 5621210575 % [System.UInt32]::MaxValue
            Write-Host $r
         shell: pwsh
+        
+      - name: duo
+        run: |
+            $ResourcesNamePrefix = ${{ github.run_number }} % [System.UInt32]::MaxValue
+            $ResourcesNamePrefix2 = ${{ github.run_id }} % [System.UInt32]::MaxValue
+            Write-Host '--------------------'
+            Write-Host $ResourcesNamePrefix
+            Write-Host '===================='
+            Write-Host $ResourcesNamePrefix2
+            
+
  
 
